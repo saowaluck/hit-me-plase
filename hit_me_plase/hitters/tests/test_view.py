@@ -22,7 +22,8 @@ class LandingPageViewTest(TestCase):
     def test_should_save_email_when_submit_form(self):
         data = {'email': 'fake_email@gmail.com'}
 
-        self.client.post('/', data=data)
+        response = self.client.post('/', data=data)
 
+        self.assertEqual(response.status_code, 200)
         expected = Hitter.objects.filter(email=data['email']).count()
         self.assertEqual(expected, 1)
