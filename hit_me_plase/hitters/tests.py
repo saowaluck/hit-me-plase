@@ -14,3 +14,7 @@ class HitterTest(TestCase):
 class HitterAdminTest(TestCase):
     def test_hitter_should_be_register_to_admin(self):
         self.assertIsInstance(admin.site._registry[Hitter], HitterAdmin)
+
+    def test_hitter_admin_should_set_list_display(self):
+        expected = ('email', )
+        self.assertEqual(HitterAdmin.list_display, expected)
