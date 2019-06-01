@@ -24,7 +24,7 @@ SECRET_KEY = 'f0i^96dc50#m19cpfz*d)#di4+r&-1d*6b@v(jb_63)nc2bq+e'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 DJANGO_APPS = [
