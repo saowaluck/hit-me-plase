@@ -1,11 +1,9 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 from django.views import View
 
 
 class LandingPageView(View):
     def get(self, request, *args, **kwargs):
-        html = '<form action="" method="post">' \
-            '<input type="email" name="email">' \
-            '<input type="submit" value="Submit" />' \
-            '</form>'
-        return HttpResponse(html)
+        template_name = 'index.html'
+
+        return render(request, template_name)
