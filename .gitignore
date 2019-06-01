@@ -126,3 +126,6 @@ pronto_exim/tmp/logs/
 **/static/
 
 node_modules/
+
+# ENV
+ENV/
