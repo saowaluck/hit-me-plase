@@ -1,0 +1,26 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.7-alpine
+    working_directory: ~/hitme
+    steps:
+      - checkout
+      - run:
+          name: install dependencies
+          command: |
+            python3 -m venv ENV
+            . ENV/bin/activate
+            pip install -r requirements.txt
+      - run:
+          name: run unit test
+          command: |
+            . ENV/bin/activate
+            cd hit_me_plase && python manage.py test
+      - run:
+          name: run static analytic
+          command: |
+            . ENV/bin/activate
+            cd hit_me_plase && flake8
+
+
