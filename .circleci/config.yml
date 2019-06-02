@@ -5,6 +5,7 @@ jobs:
       - image: circleci/python:3.7
     working_directory: ~/hitme
     steps:
+      - setup_remote_docker
       - checkout
       - run:
           name: install dependencies
@@ -22,5 +23,8 @@ jobs:
           command: |
             . ENV/bin/activate
             cd hit_me_plase && flake8
-
-
+      - run:
+          name: build image and push image
+          command: docker build -t popsoften/hitme:live .
+            docker login -u=$DOCKER_USERNAME -p=$DOCKER_PASSWORD
+            docker push popsoften/hitme:live
