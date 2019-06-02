@@ -25,6 +25,7 @@ jobs:
             cd hit_me_plase && flake8
       - run:
           name: build image and push image
-          command: docker build -t popsoften/hitme:live .
+          command: |
+            docker build -t popsoften/hitme:live .
             docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
             docker push popsoften/hitme:live
