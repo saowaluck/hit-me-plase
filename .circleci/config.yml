@@ -5,6 +5,9 @@ jobs:
       - image: circleci/python:3.7
     working_directory: ~/hitme
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "SO:ME:FIN:G:ER:PR:IN:T"
       - setup_remote_docker
       - checkout
       - run:
@@ -13,6 +16,7 @@ jobs:
             python3 -m venv ENV
             . ENV/bin/activate
             pip install -r requirements.txt
+            pip install ansible
       - run:
           name: run unit test
           command: |
@@ -29,3 +33,9 @@ jobs:
             docker build -t popsoften/hitme:live .
             docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
             docker push popsoften/hitme:live
+      - run:
+          name: deploy
+          command: |
+            . ENV/bin/activate
+            cd ansible
+            ansible-playbook -i hosts -v deploy.yml --extra-vars "project_path=~/hitme"
