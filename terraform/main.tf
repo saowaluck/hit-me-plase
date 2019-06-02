@@ -25,7 +25,7 @@ resource "google_compute_instance" "tf_instance" {
     access_config {}
   }
 
-  tags = ["my-web"]
+  tags = ["my-web", "http-server", "https-server"]
 }
 output "ip" {
   value = "${google_compute_instance.tf_instance.*.network_interface.0.access_config.0.nat_ip}"
