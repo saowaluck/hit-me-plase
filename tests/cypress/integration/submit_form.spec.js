@@ -3,7 +3,7 @@ describe('Landing Page', () => {
         const user = cy
         user.visit('http://localhost:8000')
         user.get('h1')
-            .contains('Hit Me please!')
+            .contains('hit me please YOYO!')
         user.get('input[name="email"]')
             .type('pop@prontomarketing.com')
         user.get('input[type="submit"]')
